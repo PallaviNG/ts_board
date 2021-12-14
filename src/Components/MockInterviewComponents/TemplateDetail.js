@@ -1,18 +1,27 @@
-import { Field, Form, Formik } from "formik";
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
+import { saveAllTemplateFormsAction } from "../../redux/action/TemplateAction";
+import { getTemplateList } from './../../Service/templateService';
 
 function TemplateDetail({ history, match }) {
-  let templateList = useSelector((state) => state.templateDetails.templateList);
+  let templateForms = useSelector((state) => state.templateDetails.templateList);
 
   let [initialValues, setInitialValues] = useState({
     template_title: "",
-    dynamicComponent: [],
+    questionSets: [],
   });
 
+  let dispatch = useDispatch();
+
   useEffect(() => {
-    var singleTemplateDetails = templateList.filter(
+    console.log(templateForms);
+    getTemplateList("get-template-list").then((result) => {
+      if (result === undefined) return false;
+      dispatch(saveAllTemplateFormsAction(result.templateList));
+    });
+
+    var singleTemplateDetails = templateForms.filter(
       (template) => template._id === match.params.id
     );
     if (singleTemplateDetails.length === 0) {
@@ -21,6 +30,7 @@ function TemplateDetail({ history, match }) {
     } else {
       setInitialValues(singleTemplateDetails[0]);
     }
+    console.log(singleTemplateDetails);
     console.log(initialValues);
   }, [initialValues]);
 

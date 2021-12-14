@@ -26,6 +26,13 @@ export const deleteTemplateAction = (deleteID) => {
     };
 };
 
+export const deleteQuestionSet = (deleteID) => {
+    return {
+        type: "DELETE_TEMPLATE_QUESTION_SET",
+        payload: deleteID
+    };
+};
+
 export const saveAllDynamicComponentDetailsAction = (dynamicComponentList) => {
     return {
         type: "SAVE_ALL_CYNAMIC_COMPONENT_DETAILS",

@@ -17,11 +17,21 @@ export const TemplateReducer = (state = initState, action) => {
     case "SAVE_ALL_TEMPLATE_FORMS":
       return { ...state, templateList: payload };
 
+    // case "DELETE_TEMPLATE":
+    //   let removeTemplate = [...state.templateQuestionSet];
+    //   removeTemplate.splice(payload, 1);
+    //   return { ...state, templateQuestionSet: removeTemplate };
+
     case "DELETE_TEMPLATE":
-      let removeTemplate = [...state.templateQuestionSet];
+      let removeTemplate = [...state.templateList];
       removeTemplate.splice(payload, 1);
-      return { ...state, templateQuestionSet: removeTemplate };
-      
+      return { ...state, templateList: removeTemplate };
+
+    case "DELETE_TEMPLATE_QUESTION_SET":
+      let removeQuestionSet = [...state.templateQuestionSet];
+      removeQuestionSet.splice(payload, 1);
+      return { ...state, templateQuestionSet: removeQuestionSet };
+
     default:
       return { ...state };
   }

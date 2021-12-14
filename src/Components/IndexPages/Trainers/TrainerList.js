@@ -15,7 +15,6 @@ function TrainerList({ history }) {
                 result.result.deletedCount === 1 &&
                 result !== undefined
             ) {
-                toast.success("Deleted one trainer successfully!");
                 dispatch(deleteTrainerAction(index));
             } else toast.error("Unable to delete trainer");
         });

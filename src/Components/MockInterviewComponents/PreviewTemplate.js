@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 import FormControl from "./../forms/FormControl";
 import { useDispatch } from "react-redux";
 import { createNewTemplate, getTemplateList } from "./../../Service/templateService";
-import { addNewTemplateAction, saveAllTemplateDetailsAction } from "./../../redux/action/TemplateAction";
+import { addNewTemplateAction,deleteQuestionSet } from "./../../redux/action/TemplateAction";
+
 
 function PreviewTemplate({ history }) {
   let templateInputs = useSelector((state) => state.templateDetails.templateQuestionSet);
@@ -29,18 +30,8 @@ function PreviewTemplate({ history }) {
     console.log(templateInputs);
   }, [templateInputs]);
 
-  // useEffect(() => {
-  //   getTemplateList("get-template-list").then((result) => {
-  //       if (result === undefined) return false;
-  //       dispatch(saveAllTemplateDetailsAction(result.templateLists));
-  //   });
-  // },[]);
-
   let deleteComponent = (index) => {
-    let _templateInputs = [...templateInputs];
-    _templateInputs.splice(index, 1);
-    templateInputs = [..._templateInputs];
-    dispatch(saveAllTemplateDetailsAction(_templateInputs));
+    dispatch(deleteQuestionSet(index));
   };
 
   let onSubmit = (values, onSubmitProps) => {

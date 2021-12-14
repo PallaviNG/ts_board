@@ -19,7 +19,6 @@ function BatchList({ history }) {
         result.result.deletedCount === 1 &&
         result !== undefined
       ) {
-        toast.success("Deleted one batch successfully!");
         dispatch(deleteBatchAction(index));
       } else toast.error("Unable to delete batch");
     });

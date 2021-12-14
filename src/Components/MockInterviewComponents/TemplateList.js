@@ -17,7 +17,6 @@ function TemplateList({ history }) {
                 result.result.deletedCount === 1 &&
                 result !== undefined
             ) {
-                toast.success("Deleted a template successfully!");
                 dispatch(deleteTemplateAction(index));
                 history.push("/mock/template/list");
             } else toast.error("Unable to delete template");
@@ -51,8 +50,8 @@ function TemplateList({ history }) {
                                     </p>
 
                                     <div className="questionSetCardContainer" title="Question Set">
-                                        {template.questionSets.map((questionSet) => {
-                                           return( <div className="questionSetCard">
+                                        {template.questionSets.map((questionSet,qIndex) => {
+                                           return( <div className="questionSetCard" key={qIndex}>
                                                 <p className="question_answer_details" title="Question">
                                                     {questionSet.question}
                                                 </p>

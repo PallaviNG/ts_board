@@ -15,7 +15,6 @@ function CourseList({ history }) {
                 result.result.deletedCount === 1 &&
                 result !== undefined
             ) {
-                toast.success("Deleted a course successfully!");
                 dispatch(deleteCourseAction(index));
             } else toast.error("Unable to delete course");
         });
