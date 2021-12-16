@@ -1,0 +1,28 @@
+@import "_button";
+@import "_scrollbar";
+@import "_batches";
+@import "_content";
+@import "_courses";
+@import "_dynamicComponents";
+@import "_flex";
+@import "_icons";
+@import "_interviewer";
+@import "_loader";
+@import "_login";
+@import "_navbar";
+@import "_popup_form";
+@import "_students";
+@import "_trainers";
+@import "accordion_style";
+@import "style";
+@import "_margin_padding";
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+$primary-color: rgb(52, 152, 219);
+$success-color: rgb(35, 155, 86);
+$text-light-color: rgb(105, 107, 103);

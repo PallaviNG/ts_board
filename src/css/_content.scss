@@ -1,0 +1,63 @@
+.formComponent {
+  /* height: 80vh; */
+  width: 97%;
+  /* border:1px solid gray; */
+  margin: 10px 5px;
+  box-shadow: 0px 0px 2px 3px lightgray;
+  padding: 1em;
+}
+
+.form-group {
+  width: inherit;
+  padding: 15px;
+  margin: 10px;
+  background-color: lightgray;
+}
+
+.form-group > label {
+  width: 200px;
+}
+
+.form-group > input,
+.form-group > select {
+  width: 95%;
+  margin-left: 1em;
+  margin-bottom: 0.5em;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid dodgerblue;
+}
+.form-group > input:hover {
+  box-shadow: inset 0px 0px 2px 2px lightblue;
+  cursor: text;
+}
+.form-group > input:active {
+  cursor: text;
+}
+
+.fa_icons{
+  /* border:1px solid black; */
+  padding:3px;
+  font-size: 20px;
+  color: dodgerblue;
+}
+
+button {
+  padding: 5px 15px;
+  border: 1px solid dodgerblue;
+  background-color: lightcyan;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: lightblue;
+}
+
+button:active {
+  background-color: dodgerblue;
+}
+
+.no_of_templates {
+  margin-top: 1em;
+  line-height: 2em;
+}
