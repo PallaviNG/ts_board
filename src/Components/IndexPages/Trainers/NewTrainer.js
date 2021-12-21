@@ -1,6 +1,6 @@
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import { addNewTrainerAction, saveAllTrainerDetailsAction } from "../../../redux/action/TrainerAction";
@@ -33,7 +33,7 @@ function NewTrainer({ history }) {
         toast.error("Unable to Create New Trainer");
       }
       dispatch(addNewTrainerAction(result.result));
-      history.replace("/trainer/list");
+      // history.replace("/trainer/list");
       onSubmitProps.resetForm();
     });
   };
@@ -66,6 +66,7 @@ function NewTrainer({ history }) {
               <Field
                 name="phone_number"
                 id="phone_number"
+                type="number"
                 placeholder="Phone Number"
               />
               <ErrorMessage name="phone_number" className="error" component={InputError} />
@@ -74,7 +75,9 @@ function NewTrainer({ history }) {
               <Field
                 name="email_id"
                 id="email_id"
+                type="email"
                 placeholder="Email ID"
+                className="text-transform-lowercase"
               />
               <ErrorMessage name="email_id" className="error" component={InputError} />
             </div>

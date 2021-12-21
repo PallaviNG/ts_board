@@ -15,10 +15,9 @@
   margin: 10px;
   padding: 10px;
   border-radius: 5px;
-}
-
-.card:hover {
-  box-shadow: 0px 0px 5px 5px  rgba(0, 0, 0, 0.2);
+  &:hover {
+    box-shadow: 0px 0px 5px 5px  rgba(0, 0, 0, 0.2);
+  }
 }
 
 .batch_card {
@@ -37,20 +36,18 @@
   /* border: 1px solid blueviolet; */
   display: flex;
   justify-content: center;
-}
+  button {
+    margin: 1em;
+    padding: 0.8rem 2rem;
+    cursor: pointer;
+  }
 
-.form-buttons button {
-  margin: 1em;
-  padding: 0.8rem 2rem;
-  cursor: pointer;
+  .edit {
+    background-color: orangered;
+    border: 0;
+    color: white;
+  }
 }
-
-.form-buttons .edit {
-  background-color: orangered;
-  border: 0;
-  color: white;
-}
-
 
 a{
   text-decoration: none;

@@ -25,3 +25,20 @@
     border: 1px solid dodgerblue;
     box-shadow: inset 0px 0px 2px 2px lightblue;
 }
+
+
+//DIALOG BOX
+
+.pop-up-dialog-parent-container {
+    background-color: black;
+}
+
+.pop-up-dialog-box {
+    height: 30vh;
+    width: 50%;
+    border: 1px solid lightblue;
+    margin: 0.8em;
+    position:absolute;
+    top:0;
+    left:0;
+}

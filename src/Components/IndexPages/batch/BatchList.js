@@ -3,14 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { getBatchList, removeBatch } from "./../../../Service/batchService";
 import { deleteBatchAction, saveAllBatchDetailsAction } from "./../../../redux/action/BatchAction";
 import { toast } from "react-toastify";
-import LoaderEffect from './../../LoaderEffect';
+import { Link } from 'react-router-dom';
 
 function BatchList({ history }) {
   let batchList = useSelector((state) => state.batchDetails.batches);
   let dispatch = useDispatch();
 
 
-  let [loading, setLoading] = useState(false);
 
   let deleteBatch = (index, _id) => {
     removeBatch("delete-batch-by-id", _id).then((result) => {
@@ -29,18 +28,17 @@ function BatchList({ history }) {
     getBatchList("get-batch-list").then((result) => {
       if (result === undefined) return false;
       dispatch(saveAllBatchDetailsAction(result.batchList));
-      // (dispatch(saveAllBatchDetailsAction(result.batchList))?
-      // setLoading(false):
-      // setLoading(true));
     });
-  }, [batchList]);
+  }, []);
   return (
-    // loading ? (<LoaderEffect />) :
-    // setLoading(false)
-    // (
     <div className="content">
       <div className="formComponent">
         <h4 className="text-align-center">List of Batches</h4>
+        {batchList.length===0?<>
+        <div>No Batch Found!</div>
+        <div><Link to="/batch/new">Create New Batch</Link></div>
+        </>:
+        <>
         <div className="parent_card">
           {batchList.map((batch, index) => {
             return (
@@ -77,10 +75,10 @@ function BatchList({ history }) {
             );
           })}
         </div>
+        </>}
       </div>
     </div>
   )
-  // );
 }
 
 export default BatchList;

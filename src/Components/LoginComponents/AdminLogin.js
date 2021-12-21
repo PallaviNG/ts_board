@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import circular_logo from "../Images/circular_logo.jpg";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
@@ -10,6 +10,8 @@ export default function AdminLogin({ history }) {
     admin_name: "",
     admin_password: "",
   };
+
+  const [visible, setVisibility] = useState(false);
 
   let validationSchema = yup.object().shape({
     admin_name: yup.string().min(4, "username must be more than 4 characters").max(30, "admin username must be less than 30 characters").required("username is required"),
@@ -52,17 +54,32 @@ export default function AdminLogin({ history }) {
                 </div>
                 <ErrorMessage name="admin_name" className="error" component={InputError} />
               </div>
+
               <div className=" flex flex-direction-column justify-content-center align-items-center">
-                <div className="login-form-group flex justify-content-center align-items-center">
+                <div className="login-form-group passwordContainer flex justify-content-center align-items-center">
                   <span className="flex  justify-content-center align-items-center">
                     <i className="fa fa-key" aria-hidden="true"></i>
                   </span>
-                  <Field
-                    name="admin_password"
-                    id="admin_password"
-                    type="password"
-                    placeholder="Password"
-                  />
+
+                  {visible ?
+                    <><Field
+                      name="admin_password"
+                      id="admin_password"
+                      type="text"
+                      autoComplete="off"
+                      placeholder="Password"
+                    />
+                      <strong className="passwordIcon" onClick={() => setVisibility(false)}><i className="fa fa-eye" aria-hidden="true"></i></strong></>
+                    :
+                    <>
+                      <Field
+                        name="admin_password"
+                        id="admin_password"
+                        type="password"
+                        placeholder="Password"
+                      />
+                      <strong className="passwordIcon" onClick={() => setVisibility(true)}><i className="fa fa-eye-slash" aria-hidden="true"></i></strong></>
+                  }
                 </div>
                 <ErrorMessage name="admin_password" className="error" component={InputError} />
               </div>

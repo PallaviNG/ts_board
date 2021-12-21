@@ -1,4 +1,4 @@
-import { Field, Form, Formik,ErrorMessage } from "formik";
+import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +22,7 @@ function NewBatch({ history }) {
     no_of_students: "",
   };
 
-  
+
 
   let [trainerID, setTrainerID] = useState([]);
   let [trainerOptions, setTrainerOptions] = useState([]);
@@ -34,7 +34,7 @@ function NewBatch({ history }) {
         toast.error("Unable to Create New Batch")
       }
       dispatch(addNewBatchAction(result.result));
-      history.push("/batch/list");
+      // history.push("/batch/list");
       onSubmitProps.resetForm();
     });
   };
@@ -46,24 +46,28 @@ function NewBatch({ history }) {
       getTrainerList("get-trainer-list").then((result) => {
         if (result === undefined) return false;
         let _trainerList = result.trainerList;
-        // setTrainerID([...trainerID]);
+
+        trainerID = [];
+        trainerID.push({value:0,name:'-Select Trainer-'});
         _trainerList.forEach(trainer => {
           trainerID.push({ value: trainer._id, name: trainer.trainer_name });
         });
         console.log(trainerID);
         setTrainerID([...trainerID]);
+
         dispatch(saveAllTrainerDetailsAction(result.trainerList));
         setExtraRequestCall(true);
       });
     }
-  }, [trainerList,trainerID]);
+  }, [trainerList, trainerID]);
 
   useEffect(() => {
-    let _trainerOptions = [...trainerID];
-    setTrainerOptions([..._trainerOptions]);
+
+    let trainerOptions = [...trainerID];
+    setTrainerOptions([...trainerOptions]);
   }, [trainerID]);
 
-  
+
   let validationSchema = yup.object().shape({
     batch_name: yup.string().required("Batch name is required"),
     course_name: yup.string().required("Course Name is required"),
@@ -103,6 +107,7 @@ function NewBatch({ history }) {
               <Field
                 name="batch_name"
                 id="batch_name"
+                autoComplete="off"
                 placeholder="Batch Name"
               />
               <ErrorMessage name="batch_name" className="error" component={InputError} />
@@ -111,6 +116,7 @@ function NewBatch({ history }) {
               <Field
                 name="course_name"
                 id="course_name"
+                autoComplete="off"
                 placeholder="Course Name"
               />
               <ErrorMessage name="course_name" className="error" component={InputError} />
@@ -119,20 +125,30 @@ function NewBatch({ history }) {
             <div className="form-group">
               <Field name="trainer_id" as="select" title="ID - Trainer Name">
                 {trainerOptions.map((trainer, index) =>
-                  // <option value="">-Select Trainer-</option>
                   <option key={index}
-                    value={trainer.value}>{trainer.value}-{trainer.name}</option>
+                    value={trainer.value}>{trainer.name}</option>
                 )}
               </Field>
               <ErrorMessage name="trainer_id" className="error" component={InputError} />
             </div>
+
             {/* <div className="form-group">
-                <Field name="trainer_name" id="trainer_name" disabled value={trainer.name} />
-            </div> */}
+              <Field name="trainer_id" as="select" title="ID - Trainer Name">
+                {trainerOptions.map((trainer, index) =>
+                  <option key={index}
+                    value={trainer.value}>{trainer.name}</option>
+                )}
+              </Field>
+              <ErrorMessage name="trainer_id" className="error" component={InputError} />
+            </div>
+           */}
+
             <div className="form-group">
               <Field
                 name="no_of_students"
                 id="no_of_students"
+                type="number"
+                autoComplete="off"
                 placeholder="Number of Students"
               />
               <ErrorMessage name="trainer_id" className="error" component={InputError} />

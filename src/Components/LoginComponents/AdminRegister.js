@@ -58,7 +58,7 @@ function AdminRegister({ history }) {
                                     <Field
                                         name="admin_name"
                                         id="admin_name"
-                                        autocomplete="off"
+                                        autoComplete="off"
                                         placeholder="User Name"
                                     />
                                 </div>
@@ -73,8 +73,9 @@ function AdminRegister({ history }) {
                                         name="admin_email"
                                         id="admin_email"
                                         type="email"
-                                        autocomplete="off"
+                                        autoComplete="off"
                                         placeholder="Email ID"
+                                        className="text-transform-lowercase"
                                     />
                                 </div>
                                 <ErrorMessage name="admin_email" className="error" component={InputError} />
@@ -102,7 +103,7 @@ function AdminRegister({ history }) {
                                         name="admin_password"
                                         type="password"
                                         id="admin_password"
-                                        autocomplete="off"
+                                        autoComplete="off"
                                         placeholder="Password"
                                     />
                                 </div>

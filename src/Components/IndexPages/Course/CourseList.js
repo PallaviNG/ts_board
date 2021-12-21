@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { deleteCourseAction, saveAllCourseDetailsAction } from './../../../redux/action/CourseAction';
 import { getCourseList, removeCourse } from './../../../Service/courseService';
+import { Link } from 'react-router-dom';
 
 function CourseList({ history }) {
     let courseList = useSelector((state) => state.courseDetails.courses);
@@ -33,42 +34,47 @@ function CourseList({ history }) {
             // loading ? <LoaderEffect /> : courseList
 
         });
-    }, [courseList]);
-    
+    }, []);
+
     return (
         <div className="content">
             <div className="formComponent">
                 <h4 className="text-align-center">List of Courses</h4>
-                <div className="parent_card">
-                    {courseList.map((course, index) => {
-                        return (
-                            <div
-                                className="card course_card flex flex-direction-column"
-                                key={index}
-                            >
-                                <p className="batch_details" title="Course Name">
-                                    {course.course_name}
-                                </p>
-                                <p className="batch_details" title="Domain Name">
-                                    {course.domain_name}
-                                </p>
-                                <div className="form-buttons">
-                                    <button onClick={() => deleteCourse(index, course._id)}>
-                                        DELETE
-                                    </button>
-                                    <button
-                                        className="edit"
-                                        onClick={() => {
-                                              history.push("/course/edit/" + course._id);
-                                        }}
-                                    >
-                                        EDIT
-                                    </button>
+                {courseList.length === 0 ? <>
+                    <div>Course List is Empty</div>
+                    <div><Link to="/course/new">Add New Course</Link></div>
+                </> : <>
+                    <div className="parent_card">
+                        {courseList.map((course, index) => {
+                            return (
+                                <div
+                                    className="card course_card flex flex-direction-column"
+                                    key={index}
+                                >
+                                    <p className="batch_details" title="Course Name">
+                                        {course.course_name}
+                                    </p>
+                                    <p className="batch_details" title="Domain Name">
+                                        {course.domain_name}
+                                    </p>
+                                    <div className="form-buttons">
+                                        <button onClick={() => deleteCourse(index, course._id)}>
+                                            DELETE
+                                        </button>
+                                        <button
+                                            className="edit"
+                                            onClick={() => {
+                                                history.push("/course/edit/" + course._id);
+                                            }}
+                                        >
+                                            EDIT
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                    })}
-                </div>
+                            );
+                        })}
+                    </div>
+                </>}
             </div>
         </div>
     );

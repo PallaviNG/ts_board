@@ -7,11 +7,9 @@ import { createNewTemplate, getTemplateList } from "./../../Service/templateServ
 import { addNewTemplateAction,deleteQuestionSet } from "./../../redux/action/TemplateAction";
 
 
-function PreviewTemplate({ history }) {
+function SharableTemplateForm({ history }) {
   let templateInputs = useSelector((state) => state.templateDetails.templateQuestionSet);
-  let [templateName, setTemplateName] = useState("");
 
-  let dispatch = useDispatch();
   let [initialValues, setInitialValues] = useState({
     sample: "",
     template_title:""
@@ -26,32 +24,26 @@ function PreviewTemplate({ history }) {
     // setInitialValues(iObject);
   }, []);
 
-  useEffect(() => {
-    console.log(templateInputs);
-  }, [templateInputs]);
-
-  let deleteComponent = (index) => {
-    dispatch(deleteQuestionSet(index));
-  };
 
   let onSubmit = (values, onSubmitProps) => {
-    var sendData = {
-      template_title: templateName,
-      questionSets: templateInputs,
-    };
+      console.log(values);
+    // var sendData = {
+    //   template_title: templateName,
+    //   questionSets: templateInputs,
+    // };
 
-    createNewTemplate("create-new-template", sendData).then((result) => {
-      if (result === undefined) return false;
-      dispatch(addNewTemplateAction(result.result));
-      history.push("/mock/template/list");
-      onSubmitProps.resetForm();
-    });
+    // createNewTemplate("create-new-template", sendData).then((result) => {
+    //   if (result === undefined) return false;
+    //   dispatch(addNewTemplateAction(result.result));
+    //   history.push("/mock/template/list");
+    //   onSubmitProps.resetForm();
+    // });
   };
 
   return (
     <div className="content">
       <div className="formComponent">
-        <h4 className="text-align-center">Preview Template</h4>
+        <h4 className="text-align-center">Mock Template</h4>
         <Formik
           initialValues={initialValues}
           onSubmit={onSubmit}
@@ -60,14 +52,14 @@ function PreviewTemplate({ history }) {
           <Form>
             <div className="titleComponent dc TextStyle">
               <Field
-                onChange={(event) => setTemplateName(event.target.value)}
                 name="template_title"
                 autoComplete="off"
                 placeholder="Untitled Template"
-                value={templateName}
+                value="Default Template"
               />
             </div>
-            {templateInputs.map((field, index) => {
+            
+            {/* {templateInputs.map((field, index) => {
               return (
                 <div key={index} className="previewTemplate flex align-items-center justify-content-center">
                   <FormControl {...field} />
@@ -78,12 +70,12 @@ function PreviewTemplate({ history }) {
                   </div>
                 </div>
               );
-            })}
+            })} */}
 
             <div className="form-buttons">
-              <button type="submit">Save New Template</button>
-              <button onClick={() => history.push("/mock/template/new")}>
-                Back to Create Template
+              <button type="submit">EDIT</button>
+              <button>
+                SHARE
               </button>
               <button onClick={() => history.push("/mock/template/list")}>
                 View Template List
@@ -96,4 +88,4 @@ function PreviewTemplate({ history }) {
   );
 }
 
-export default PreviewTemplate;
+export default SharableTemplateForm;

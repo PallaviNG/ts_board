@@ -1,4 +1,5 @@
 @import "_button";
+@import "_border";
 @import "_scrollbar";
 @import "_batches";
 @import "_content";
@@ -15,7 +16,9 @@
 @import "_trainers";
 @import "accordion_style";
 @import "style";
+@import "_colors";
 @import "_margin_padding";
+@import "_text_transform";
 
 * {
   margin: 0px;

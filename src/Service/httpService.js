@@ -21,6 +21,7 @@ export const commonError = (ex) => {
   let { response } = ex;
   if (response) {
     toast.error(
+      // `${response.status} ${response.statusText} ${response.data.error}`
       `${response.status} ${response.statusText} ${response.data.error}`
     );
   }

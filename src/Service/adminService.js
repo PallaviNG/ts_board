@@ -1,4 +1,4 @@
-import { base_url, post } from "./httpService";
+import { base_url, commonError, post } from "./httpService";
 import { toast } from "react-toastify";
 import jwt_decode from "jwt-decode";
 
@@ -8,7 +8,7 @@ export const getAdminLogin = async (url, sendData) => {
     toast.success("Login Successfully");
     return data;
   } catch (error) {
-    console.log(error);
+    commonError(error);
   }
 };
 
@@ -18,7 +18,7 @@ export const saveAdminRegister = async (url, sendData) => {
       toast.success("Registered Successfully");
     return data;
   } catch (error) {
-    console.log(error);
+    commonError(error);
   }
 };
 

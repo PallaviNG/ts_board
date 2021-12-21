@@ -57,6 +57,7 @@ function NewInterviewer({ history }) {
                 type="email"
                 autoComplete="off"
                 placeholder="Email ID"
+                className="text-transform-lowercase"
               />
             </div>
 

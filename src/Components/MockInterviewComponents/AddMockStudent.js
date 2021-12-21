@@ -65,6 +65,7 @@ function AddMockStudent({ history }) {
               <Field
                 name="student_name"
                 id="student_name"
+                autoComplete="off"
                 placeholder="Student Name"
               />
               <ErrorMessage name="student_name" className="error" component={InputError} />
@@ -73,6 +74,8 @@ function AddMockStudent({ history }) {
               <Field
                 name="phone_number"
                 id="phone_number"
+                type="number"
+                autoComplete="off"
                 placeholder="Phone Number"
               />
               <ErrorMessage name="phone_number" className="error" component={InputError} />
@@ -81,7 +84,9 @@ function AddMockStudent({ history }) {
               <Field
                 name="email_id"
                 id="email_id"
+                type="email"
                 placeholder="Email ID"
+                className="text-transform-lowercase"
               />
               <ErrorMessage name="email_id" className="error" component={InputError} />
             </div>

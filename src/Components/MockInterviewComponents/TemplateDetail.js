@@ -29,8 +29,8 @@ function TemplateDetail({ history, match }) {
     } else {
       setInitialValues(singleTemplateDetails[0]);
     }
-  }, [initialValues]);
-
+  // }, [initialValues]);
+  },[]);
 
   return (
     <div className="content">
@@ -45,7 +45,7 @@ function TemplateDetail({ history, match }) {
 
         <div className="template_form_question_answer_details" title="Question Answer Set">
           {initialValues.questionSets.map((questionSet,qIndex) => {
-            return (<div className="questionSetCard">
+            return (<div className="questionSetCard" key={qIndex}>
               <p className="question_answer_set_details" title="Question">
                 {qIndex+1} {questionSet.question}
               </p>

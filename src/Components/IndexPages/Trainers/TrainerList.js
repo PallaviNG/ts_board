@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { deleteTrainerAction, saveAllTrainerDetailsAction } from "../../../redux/action/TrainerAction";
 import { getTrainerList, removeTrainer } from "../../../Service/trainerService";
@@ -38,6 +39,11 @@ function TrainerList({ history }) {
         <div className="content">
             <div className="formComponent">
                 <h4 className="text-align-center">List of Trainers</h4>
+                {trainerList.length===0?<>
+                    <div>Trainer List is Empty!</div>
+                    <div><Link to = "/trainer/new">Add New Trainer</Link></div>
+                </>:
+                <>
                 <div className="parent_card">
                     {trainerList.map((trainer, index) => {
                         return (
@@ -79,6 +85,7 @@ function TrainerList({ history }) {
                         );
                     })}
                 </div>
+                </>}
             </div>
         </div>
     );

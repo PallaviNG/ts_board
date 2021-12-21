@@ -23,9 +23,12 @@ let initState = {
         return { ...state, templateAssignments: payload };
   
       case "DELETE_TEMPLATE_ASSIGNMENT":
-        let removeTemplate = [...state.templateAssignments];
-        removeTemplate.splice(payload, 1);
-        return { ...state, templateAssignments: removeTemplate };
+        console.log(state.templateAssignments);
+        console.log(payload);
+        let removeAssignedTemplate = [...state.templateAssignments];
+        removeAssignedTemplate.splice(payload, 1);
+        console.log(removeAssignedTemplate);
+        return { ...state, templateAssignments: removeAssignedTemplate };
   
       case "DELETE_INTERVIEWER_DETAILS":
         let removeInterviewerDetails = [...state.interviewers];

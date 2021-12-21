@@ -19,6 +19,7 @@ export const getBatchList = async (url) => {
 export const createNewBatch = async (url, sendData) => {
   try {
     let { data } = await post(base_url + url, sendData);
+    toast.success("Created New Batch Successfully!")
     return data;
   } catch (error) {
     commonError(error);
@@ -27,6 +28,7 @@ export const createNewBatch = async (url, sendData) => {
 export const removeBatch = async (url, _id) => {
   try {
     let { data } = await deleteService(base_url + url, { data: { _id } });
+    toast.success("Deleted a Batch!")
     return data;
   } catch (error) {
     commonError(error);

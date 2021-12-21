@@ -24,7 +24,7 @@ function TemplateAssignment({ history, match }) {
 
   let [templateDetails, setTemplateDetails] = useState({});
 
-  let [interviewerID, setInterviewerID] = useState();
+  let [interviewerID, setInterviewerID] = useState(undefined);
 
   let [iTemplateAssignmentForms, setITemplateAssignmentForms] = useState([]);
 
@@ -48,12 +48,12 @@ function TemplateAssignment({ history, match }) {
       toast.error("No Template Found");
       history.replace("/mock/template/list");
     } else {
-      let _templateDetails = {...templateDetails};
+      let _templateDetails = { ...templateDetails };
       _templateDetails = singleTemplateDetails[0];
       setTemplateDetails({ ..._templateDetails });
     }
   }, []);
-  
+
   useEffect(() => {
     getInterviewerList("get-interviewer-list").then((result) => {
       if (result === undefined) return false;
@@ -62,22 +62,25 @@ function TemplateAssignment({ history, match }) {
 
     interviewerOptions = [];
     interviewerOptions.push({ value: 0, name: "-Select Interviewer-" });
-    interviewerList.forEach((interviewer) => {
-      interviewerOptions.push({
-        value: interviewer._id,
-        name: interviewer.interviewer_name,
+    if (interviewerList.length === 0)
+      interviewerOptions.push({value:undefined,name:"No Interviewer found!"});
+    else {
+      interviewerList.forEach((interviewer) => {
+        interviewerOptions.push({
+          value: interviewer._id,
+          name: interviewer.interviewer_name,
+        });
       });
-    });
+    }
     setInterviewerOptions([...interviewerOptions]);
   }, []);
-  
-  
+
+
   let onSubmit = () => {
     getInterviewerDetailsByID("get-interviewer-by-id", interviewerID).then(
       (result) => {
         if (result === undefined) return false;
-        if(result.interviewers.length > 0)
-        {
+        if (result.interviewers.length > 0) {
           let _interviewerDetails = result.interviewers[0];
           iTemplateAssignmentForms = _interviewerDetails.templateAssignmentFormsList;
           setITemplateAssignmentForms([...iTemplateAssignmentForms]);
@@ -86,32 +89,34 @@ function TemplateAssignment({ history, match }) {
             (template) => template._id === templateDetails._id
           );
 
-          if(templateMatchDetails.length === 0 ) {
+          if (templateMatchDetails.length === 0) {
             iTemplateAssignmentForms.push(templateDetails);
             setITemplateAssignmentForms([...iTemplateAssignmentForms]);
           }
 
-          let updatedInterviewerData = {...updatedInterviewerDetails};
+          let updatedInterviewerData = { ...updatedInterviewerDetails };
           updatedInterviewerData = {
             _id: interviewerID,
-            interviewer_name:_interviewerDetails.interviewer_name,
+            interviewer_name: _interviewerDetails.interviewer_name,
             templateAssignmentFormsList: iTemplateAssignmentForms,
           };
           updatedInterviewerDetails = updatedInterviewerData;
           setUpdatedInterviewerDetails({ ...updatedInterviewerDetails });
         }
 
-        
-        updateInterviewerByID("update-interviewer-details",updatedInterviewerDetails)
-        .then((result) => {
-          if (result === undefined ) return false;
-          if(result.status === true  && result.result.modifiedCount > 0 && result.result.matchedCount ===1)  {
-            toast.success("Updated details!!")
-          }
-          else if(result.status === true  && result.result.modifiedCount === 0 && result.result.matchedCount ===1)
-          toast.info("No changes made!!");
-        });
-    
+
+        updateInterviewerByID("update-interviewer-details", updatedInterviewerDetails)
+          .then((result) => {
+            if (result === undefined) return false;
+            if (result.status === true && result.result.modifiedCount > 0 && result.result.matchedCount === 1) {
+              toast.success("Updated details!!");
+              history.push("/mock/template/interviewer/list");
+            }
+            else if (result.status === true && result.result.modifiedCount === 0 && result.result.matchedCount === 1)
+            toast.info("No changes made!!");
+            history.push("/mock/template/interviewer/list");
+          });
+
       });
   }
 
@@ -146,11 +151,10 @@ function TemplateAssignment({ history, match }) {
                 <button onClick={() => history.push("/mock/template/list")}>
                   Back to Template List
                 </button>
-                <button
-                  type="submit"
-                >
-                  ASSIGN
-                </button>
+                {interviewerList.length===0 ?
+                <button type="submit" disabled>ASSIGN </button>:
+                <button type="submit">ASSIGN </button>
+                }
               </div>
             </Form>
           </Formik>
