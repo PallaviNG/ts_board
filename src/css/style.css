@@ -73,6 +73,7 @@ div.content {
 
 h4 {
   color: blue;
+  padding-bottom: 1em;
 }
 
 input:disabled {

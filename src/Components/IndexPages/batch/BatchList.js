@@ -33,10 +33,12 @@ function BatchList({ history }) {
   return (
     <div className="content">
       <div className="formComponent">
-        <h4 className="text-align-center">List of Batches</h4>
+        <h4 className="text-align-center">List of Batches
+        <strong onClick={() => history.push("/batch/new")} title="Click to Add New Batch!" className="createIcon"><i className="fa fa-plus" aria-hidden="true"></i></strong>
+        </h4>
         {batchList.length===0?<>
         <div>No Batch Found!</div>
-        <div><Link to="/batch/new">Create New Batch</Link></div>
+        {/* <div><Link to="/batch/new">Create New Batch</Link></div> */}
         </>:
         <>
         <div className="parent_card">

@@ -88,7 +88,7 @@ function InterviewerDetail({ history, match }) {
                     </p>
 
                     <div className="interviewer_templates_container flex flex-direction-column align-content-center" title="Template Assignment Set">
-                        {initialValues.templateAssignmentFormsList.map((templateSet, tIndex) => {
+                        {initialValues.templateAssignmentFormsList.sort((a,b) => b.templateAssignmentDate - a.templateAssignmentDate).map((templateSet, tIndex) => {
                             return (
                                 <div className="templateSetCard" key={tIndex}>
                                     <p className="templateCardHeading" title="Template Name">

@@ -39,7 +39,9 @@ function CourseList({ history }) {
     return (
         <div className="content">
             <div className="formComponent">
-                <h4 className="text-align-center">List of Courses</h4>
+                <h4 className="text-align-center">List of Courses
+                <strong onClick={() => history.push("/course/new")} title="Click to Add New Course!" className="createIcon"><i className="fa fa-plus" aria-hidden="true"></i></strong>
+                </h4>
                 {courseList.length === 0 ? <>
                     <div>Course List is Empty</div>
                     <div><Link to="/course/new">Add New Course</Link></div>

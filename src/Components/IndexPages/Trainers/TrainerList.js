@@ -38,10 +38,11 @@ function TrainerList({ history }) {
     return (
         <div className="content">
             <div className="formComponent">
-                <h4 className="text-align-center">List of Trainers</h4>
+                <h4 className="text-align-center">List of Trainers 
+                <strong onClick={() => history.push("/trainer/new")} title="Click to Add New Trainer" className="createIcon"><i className="fa fa-plus" aria-hidden="true"></i></strong></h4>
                 {trainerList.length===0?<>
                     <div>Trainer List is Empty!</div>
-                    <div><Link to = "/trainer/new">Add New Trainer</Link></div>
+                    {/* <div><Link to = "/trainer/new">Add New Trainer</Link></div> */}
                 </>:
                 <>
                 <div className="parent_card">

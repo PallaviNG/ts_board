@@ -40,10 +40,11 @@ function InterviewerList({ history }) {
   return (
     <div className="content">
       <div className="formComponent">
-        <h4 className="text-align-center">List of Interviewers</h4>
-        {interviewerList.length === 0 ?<> <div>No Interviewers Found</div> 
-          <div>Click <strong><i className="fa fa-hand-o-right" aria-hidden="true"></i></strong> to <Link to="/mock/template/interviewer/new">Add New Interviewer</Link></div>
-          </>:
+        <h4 className="text-align-center">List of Interviewers
+        <strong onClick={() => history.push("/mock/template/interviewer/new")} title="Click to Add New Interviewer!" className="createIcon"><i className="fa fa-plus" aria-hidden="true"></i></strong>
+        </h4>
+        {interviewerList.length === 0 ? <div>No Interviewers Found</div> 
+          :
           <>
             <div className="parent_card flex flex-wrap align-items-center justify-content-center">
               {interviewerList.map((interviewer, index) => {

@@ -84,6 +84,7 @@ function CreateTemplate({ history }) {
           <Form>
             <div className="outerComponent parentComponent content formComponent">
               <div className="form-group dc">
+                <h4 className="text-align-center">Add Questions to Template</h4>
                 <div className="mainComponent">
                   {formFields.map((field, index) => {
                     return <FormControl key={index} {...field} />
