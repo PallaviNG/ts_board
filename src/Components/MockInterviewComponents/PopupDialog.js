@@ -3,30 +3,20 @@ import { Field, Form, Formik } from "formik";
 import { useSelector, useDispatch } from "react-redux";
 import { saveAllInterviewersAction } from "../../redux/action/InterviewerAction";
 import {
-  getInterviewerDetailsByID,
   getInterviewerList,
-  updateInterviewerByID,
 } from "./../../Service/interviewerService";
-import { saveAllTemplateFormsAction } from "../../redux/action/TemplateAction";
-import { getTemplateList } from "./../../Service/templateService";
-import { toast } from "react-toastify";
 
 function PopupDialog({ history, match }) {
   let interviewerList = useSelector(
     (state) => state.template_interviewerDetails.interviewers
   );
-  let templateForms = useSelector(
-    (state) => state.templateDetails.templateList
-  );
   let dispatch = useDispatch();
 
   let [interviewerOptions, setInterviewerOptions] = useState([]);
 
-  let [templateDetails, setTemplateDetails] = useState({});
 
   let [interviewerID, setInterviewerID] = useState();
 
-  let [iTemplateAssignmentForms, setITemplateAssignmentForms] = useState([]);
 
   let initialValues = {
     interviewer_id: "",

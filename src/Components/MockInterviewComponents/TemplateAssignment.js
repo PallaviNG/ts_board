@@ -152,8 +152,8 @@ function TemplateAssignment({ history, match }) {
                   Back to Template List
                 </button>
                 {interviewerList.length===0 ?
-                <button type="submit" disabled>ASSIGN </button>:
-                <button type="submit">ASSIGN </button>
+                <button type="submit" disabled>SHARE </button>:
+                <button type="submit">SHARE </button>
                 }
               </div>
             </Form>

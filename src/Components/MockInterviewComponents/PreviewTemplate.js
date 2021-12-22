@@ -35,6 +35,7 @@ function PreviewTemplate({ history }) {
   };
 
   let onSubmit = (values, onSubmitProps) => {
+    // if(templateName==="") setTemplateName("Untitled Template");
     var sendData = {
       template_title: templateName,
       questionSets: templateInputs,
@@ -64,6 +65,7 @@ function PreviewTemplate({ history }) {
                 name="template_title"
                 autoComplete="off"
                 placeholder="Untitled Template"
+                autoFocus
                 value={templateName}
               />
             </div>

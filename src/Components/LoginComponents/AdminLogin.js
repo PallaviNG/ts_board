@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import circular_logo from "../Images/circular_logo.jpg";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
-import { getAdminLogin, saveAuthToken } from "./../../Service/adminService";
+import { getAdminUsersList, getAdminLogin, saveAuthToken } from "./../../Service/adminService";
 import InputError from './../InputError';
+import { toast } from 'react-toastify';
 
 export default function AdminLogin({ history }) {
   let initialValues = {
@@ -12,6 +13,12 @@ export default function AdminLogin({ history }) {
   };
 
   const [visible, setVisibility] = useState(false);
+
+  // const [loginVisible, setLoginVisible] = useState(false);
+
+  let [failedAttempts,setFailedAttempts] = useState(0);
+
+  let [adminUsers, setAdminUsers] = useState([]);
 
   let validationSchema = yup.object().shape({
     admin_name: yup.string().min(4, "username must be more than 4 characters").max(30, "admin username must be less than 30 characters").required("username is required"),
@@ -24,6 +31,21 @@ export default function AdminLogin({ history }) {
       saveAuthToken(result.headers.x_auth_token);
     });
   };
+
+  useEffect(() => {
+    getAdminUsersList("get-admin-users-list").then((result) => {
+      if (result === undefined) return false;
+      // console.log(result.data.adminList.length);
+
+      if (result.data.adminList.length === 0)
+        toast.info("Admin User list is empty, Please Sign up!");
+      // if (result.data.adminList.length !== 0) {
+      else {
+        adminUsers = result.data.adminList;
+        setAdminUsers([...adminUsers]);
+      }
+    });
+  }, []);
 
   return (
     <div className="parentContainer  flex flex-direction-column">
@@ -50,6 +72,8 @@ export default function AdminLogin({ history }) {
                     name="admin_name"
                     id="admin_name"
                     placeholder="User Name"
+                    autoComplete="off"
+                    autoFocus
                   />
                 </div>
                 <ErrorMessage name="admin_name" className="error" component={InputError} />
@@ -88,7 +112,16 @@ export default function AdminLogin({ history }) {
                   history.push("/admin/register")
                 }}>Sign Up</button>
                 <button className="flex align-items-center">Login</button>
+
+                {/* {adminUsers.length === 0 ? 
+                (setLoginVisible(false);
+                  <button className="flex align-items-center" disabled>Login</button>)
+                  :(
+                    setLoginVisible(true);
+                <button className="flex align-items-center">Login</button>
+                )} */}
               </div>
+
             </div>
           </Form>
         </Formik>

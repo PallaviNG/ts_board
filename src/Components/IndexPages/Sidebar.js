@@ -7,11 +7,22 @@ function Sidebar() {
       <div className="sidebar">
         <Link className="active accordion" to="/">
           <span>Home</span>
-
           <div className="panel">
             <Link to="/overview">Overview</Link>
             <Link to="#">Updates</Link>
             <Link to="#">Reports</Link>
+          </div>
+        </Link>
+
+        <Link className="accordion" to="#">
+          <span>MOCK INTERVIEW</span>
+          <div className="panel">
+            <Link to="/mock/template/new">Create Template</Link>
+            <Link to="/mock/template/list">Templates List</Link>
+            <Link to="/mock/student/new">Add Student</Link>
+            <Link to="/mock/student/list">List of Students</Link>
+            <Link to="/mock/template/interviewer/new">Add Interviewer</Link>
+            <Link to="/mock/template/interviewer/list">List of Interviewers</Link>
           </div>
         </Link>
 
@@ -33,17 +44,7 @@ function Sidebar() {
           </div>
         </Link>
 
-        <Link className="accordion" to="#">
-          <span>MOCK INTERVIEW</span>
-          <div className="panel">
-            <Link to="/mock/template/new">Create Template</Link>
-            <Link to="/mock/template/list">Templates List</Link>
-            <Link to="/mock/student/new">Add Student</Link>
-            <Link to="/mock/student/list">List of Students</Link>
-            <Link to="/mock/template/interviewer/new">Add Interviewer</Link>
-            <Link to="/mock/template/interviewer/list">List of Interviewers</Link>
-          </div>
-        </Link>
+
         <Link className="accordion" to="#">
           <span>Trainer</span>
           <div className="panel">

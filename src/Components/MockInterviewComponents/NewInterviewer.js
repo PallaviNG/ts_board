@@ -1,18 +1,16 @@
 import { Field, Form, Formik } from "formik";
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { addNewInterviewerAction } from './../../redux/action/InterviewerAction';
 import { createNewInterviewer } from "../../Service/interviewerService";
 
 
 function NewInterviewer({ history }) {
-
   let dispatch = useDispatch();
   let initialValues = {
     interviewer_name: "",
     email_id: "",
-    templateAssignmentFormsList:[]
+    templateAssignmentFormsList: []
   };
 
 
@@ -21,7 +19,7 @@ function NewInterviewer({ history }) {
     var sendData = {
       interviewer_name: values.interviewer_name,
       email_id: values.email_id,
-      phone_number:values.phone_number,
+      phone_number: values.phone_number,
       templateAssignmentForms: [],
     };
 

@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
 import { getInterviewerList, updateInterviewerByID } from './../../Service/interviewerService';
-import { deleteTemplateAssignmentAction, saveAllInterviewersAction, saveAllTemplateFormAssignmentAction } from "../../redux/action/InterviewerAction";
+import { saveAllInterviewersAction, saveAllTemplateFormAssignmentAction } from "../../redux/action/InterviewerAction";
 import { Link } from 'react-router-dom';
 
 function InterviewerDetail({ history, match }) {
     let interviewerList = useSelector(
         (state) => state.template_interviewerDetails.interviewers
     );
-    let templateAssignedForms = useSelector((state) => state.template_interviewerDetails.templateAssignments);
     let dispatch = useDispatch();
 
     let [initialValues, setInitialValues] = useState({
@@ -18,6 +17,8 @@ function InterviewerDetail({ history, match }) {
         phone_number: "",
         templateAssignmentFormsList: []
     });
+
+    let [interviewers, setInterviewers] = useState([]);
 
     let [iTemplateAssignmentForms, setITemplateAssignmentForms] = useState([]);
 
@@ -55,19 +56,25 @@ function InterviewerDetail({ history, match }) {
     useEffect(() => {
         getInterviewerList("get-interviewer-list").then((result) => {
             if (result === undefined) return false;
-            console.log(result);
+
+            interviewers = result.interviewerList;
+            setInterviewers([...interviewers]);
+
             dispatch(saveAllInterviewersAction(result.interviewerList));
-            var singleInterviewerDetails = interviewerList.filter(
-                (interviewer) => interviewer._id === match.params.id
-            );
-            if (singleInterviewerDetails.length === 0) {
-                toast.error("No Interviewer Found");
-                history.replace("/mock/template/interviewer/list");
-            } else {
-                setInitialValues({ ...initialValues });
-                initialValues = singleInterviewerDetails[0];
-                setInitialValues({ ...initialValues });
-                dispatch(saveAllTemplateFormAssignmentAction(initialValues.templateAssignmentFormsList));
+
+            if (interviewers.length > 0) {
+                var singleInterviewerDetails = interviewers.filter(
+                    (interviewer) => interviewer._id === match.params.id
+                );
+                if (singleInterviewerDetails.length === 0) {
+                    toast.error("No Interviewer Found");
+                    history.replace("/mock/template/interviewer/list");
+                } else {
+                    setInitialValues({ ...initialValues });
+                    initialValues = singleInterviewerDetails[0];
+                    setInitialValues({ ...initialValues });
+                    dispatch(saveAllTemplateFormAssignmentAction(initialValues.templateAssignmentFormsList));
+                }
             }
         });
     }, []);
@@ -88,7 +95,7 @@ function InterviewerDetail({ history, match }) {
                     </p>
 
                     <div className="interviewer_templates_container flex flex-direction-column align-content-center" title="Template Assignment Set">
-                        {initialValues.templateAssignmentFormsList.sort((a,b) => b.templateAssignmentDate - a.templateAssignmentDate).map((templateSet, tIndex) => {
+                        {initialValues.templateAssignmentFormsList.sort((a, b) => b.templateAssignmentDate - a.templateAssignmentDate).map((templateSet, tIndex) => {
                             return (
                                 <div className="templateSetCard" key={tIndex}>
                                     <p className="templateCardHeading" title="Template Name">

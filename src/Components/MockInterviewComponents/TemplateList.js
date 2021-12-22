@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
@@ -75,7 +75,7 @@ function TemplateList({ history }) {
                                             <span className="deleteIcon" title="DELETE" onClick={() => deleteTemplate(index, template._id)}>
                                                 <i className="fa fa-2x fa-trash" aria-hidden="true"></i>
                                             </span>
-                                            <span className="assignIcon" title="ASSIGN" onClick={() =>
+                                            <span className="assignIcon" title="SHARE" onClick={() =>
                                                 assignTemplate(index, template._id)
                                             }>
                                                 <i className="fa fa-2x fa-user-plus" aria-hidden="true"></i>

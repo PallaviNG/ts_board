@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Formik, Form, ErrorMessage } from "formik";
-import * as yup from "yup";
+import React, {  useEffect } from "react";
+import { Formik, Form } from "formik";
 import FormControl from "./../forms/FormControl";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { saveAllTemplateDetailsAction } from './../../redux/action/TemplateAction';
-import InputError from './../InputError';
 
 function CreateTemplate({ history }) {
   let templateInputs = useSelector((state) => state.templateDetails.templateQuestionSet);

@@ -1,4 +1,4 @@
-import { base_url, commonError, post } from "./httpService";
+import { base_url, commonError,get, post } from "./httpService";
 import { toast } from "react-toastify";
 import jwt_decode from "jwt-decode";
 
@@ -21,10 +21,20 @@ export const saveAdminRegister = async (url, sendData) => {
     commonError(error);
   }
 };
+export const getAdminUsersList = async (url) => {
+  try {
+    let data = await get(base_url + url);
+      // toast.success("Registered Successfully");
+      console.log(data);
+    return data;
+  } catch (error) {
+    commonError(error);
+  }
+};
 
 export const saveAuthToken = (token) => {
   localStorage.setItem("token", token);
-  window.location.assign("/");
+  window.location.replace("/");
 };
 
 export const isAdminValid = () => {
@@ -38,5 +48,5 @@ export const getUserDetails = () => {
 
 export const removeAuthToken = (token) => {
   localStorage.removeItem("token")
-  window.location.assign("/");
+  window.location.replace("/");
 }
