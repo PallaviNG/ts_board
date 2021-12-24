@@ -6,7 +6,9 @@ function Sidebar() {
     <>
       <div className="sidebar">
         <Link className="active accordion" to="/">
-          <span>Home</span>
+          {/* <div className="flex"><span><i className="fa fa fa-home" aria-hidden="true"></i></span> */}
+          <span className="parentAccordion">Home</span>
+          {/* </div> */}
           <div className="panel">
             <Link to="/overview">Overview</Link>
             <Link to="#">Updates</Link>
@@ -15,7 +17,10 @@ function Sidebar() {
         </Link>
 
         <Link className="accordion" to="#">
-          <span>MOCK INTERVIEW</span>
+          {/* <div className="flex"> */}
+            {/* <span><i className="fa fa-list-alt" aria-hidden="true"></i></span> */}
+          <span className="flex justify-content-center">MOCK INTERVIEW</span>
+          {/* </div> */}
           <div className="panel">
             <Link to="/mock/template/new">Create Template</Link>
             <Link to="/mock/template/list">Templates List</Link>
@@ -36,13 +41,13 @@ function Sidebar() {
           </div>
         </Link>
 
-        <Link className="accordion" to="#">
+        {/* <Link className="accordion" to="#">
           <span>Course</span>
           <div className="panel">
             <Link to="/course/new">Create Course</Link>
             <Link to="/course/list">List of Courses</Link>
           </div>
-        </Link>
+        </Link> */}
 
 
         <Link className="accordion" to="#">

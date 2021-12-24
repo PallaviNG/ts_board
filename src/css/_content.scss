@@ -1,3 +1,4 @@
+@import "_colors";
 .formComponent {
   /* height: 80vh; */
   width: 97%;
@@ -35,9 +36,9 @@
   cursor: text;
 }
 
-.fa_icons{
+.fa_icons {
   /* border:1px solid black; */
-  padding:3px;
+  padding: 3px;
   font-size: 20px;
   color: dodgerblue;
 }
@@ -57,7 +58,94 @@ button:active {
   background-color: dodgerblue;
 }
 
-.no_of_templates {
-  margin-top: 1em;
-  line-height: 2em;
+.content_area_cards {
+  width: inherit;
+  justify-content: space-around;
+}
+
+.main_page_cards {
+  width: 20%;
+  height: 20vh;
+  // border: 1px solid $info-color;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-size: 18%, 90%, cover;
+  background-repeat: no-repeat;
+  background-position-x: 4%;
+  background-position-y: 4%;
+  background-blend-mode: soft-light;
+  color: white;
+
+  &:hover {
+    box-shadow: 0px 0px 8px 4px rgba(0,0,0,0.65);
+    transform: scale(1.05);
+    transition: 1s transform;
+  }
+  .listCount {
+    font-weight: bold;
+    font-size: 2.3em;
+    margin-right: 0.3em;
+  }
+  a {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  .main_page_cards_icon {
+    position: absolute;
+    right: 0.5em;
+    top: 0.5em;
+    color: lightblue;
+    &:hover {
+      transform: scale(1.3);
+      transition: 1s transform;
+        background-color: $success-color;
+        color: blue;
+    }
+  }
+}
+
+.template_cards {
+  background-color: $info-color;
+  background-image: url('../assets/images/MainPageIcons/templates.png');
+  &:hover {
+    background-color: $success-color;
+    color: white;
+  }
+}
+
+.student_cards {
+  background-color: $warning-color;
+  background-image: url('../assets/images/MainPageIcons/students.png');
+  &:hover {
+    background-color: $success-color;
+    color: white;
+  }
+}
+
+.mock_submitted_cards {
+  background-color: $danger-color;
+  background-image: url('../assets/images/MainPageIcons/submitted.png');
+  &:hover {
+    background-color: $success-color;
+    color: white;
+  }
+}
+
+.interviewers_cards {
+  background-color: $secondary-color;
+  background-image: url('../assets/images/MainPageIcons/interviewers.png');
+  &:hover {
+    background-color: $success-color;
+    color: white;
+  }
+}
+
+.template_card_icons {
+  height: 10vh;
+  width: 80%;
+  // background-color: transparent;
 }

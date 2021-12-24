@@ -38,17 +38,27 @@ function TemplateList({ history }) {
         <div className="content">
             <div className="formComponent">
                 <h4 className="text-align-center">List of Templates
-                    <strong onClick={() => history.push("/mock/template/new")} title="Click to Create New Template!" className="createIcon"><i className="fa fa-plus" aria-hidden="true"></i></strong>
+                    {/* <strong onClick={() => history.push("/mock/template/new")} title="Click to Create New Template!" className="createIcon"><i className="fa fa-plus" aria-hidden="true"></i></strong> */}
                 </h4>
+
                 {templateForms.length === 0 ? <div>No Templates Found</div>
                     : <>
-                        <div className="parent_card flex flex-wrap align-items-center justify-content-center">
+                        <div className="parent_card flex flex-wrap align-items-center justify-content-space-around">
+                            <div className="card new_template_card template_card flex flex-direction-column justify-content-center">
+                                <div className="template_heading_circle" title="New Template">NT</div>
+                                <div className="foldTemplate"></div>
+                                <div className="flex justify-content-center templatePlusIcon" title="Create New Template">
+                                    <Link to="/mock/template/new"><i className="fa fa-4x fa-plus" aria-hidden="true"></i></Link>
+                                </div>
+                            </div>
                             {templateForms.map((template, index) => {
                                 return (
                                     <div
                                         className="card template_card flex flex-direction-column justify-content-center"
                                         key={index}
                                     >
+                                        <div className="template_heading_circle" title="Template Index">T{index + 1}</div>
+                                        <div className="foldTemplate"></div>
 
                                         <p className="batch_details" title="Template Title">
                                             {template.template_title}

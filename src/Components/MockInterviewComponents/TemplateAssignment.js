@@ -23,6 +23,7 @@ function TemplateAssignment({ history, match }) {
   let [interviewerOptions, setInterviewerOptions] = useState([]);
 
   let [templateDetails, setTemplateDetails] = useState({});
+  let [templates, setTemplates] = useState([]);
 
   let [interviewerID, setInterviewerID] = useState(undefined);
 
@@ -37,22 +38,27 @@ function TemplateAssignment({ history, match }) {
   useEffect(() => {
     getTemplateList("get-template-list").then((result) => {
       if (result === undefined) return false;
+      templates = result.templateList;
+      setTemplates([...templates]);
       dispatch(saveAllTemplateFormsAction(result.templateList));
+
+      if (templates.length > 0) {
+        var singleTemplateDetails = templates.filter(
+          (template) => template._id === match.params.id
+        );
+
+        if (singleTemplateDetails.length === 0) {
+          toast.error("No Template Found");
+          history.replace("/mock/template/list");
+        } else {
+          setTemplateDetails({ ...templateDetails });
+          templateDetails = singleTemplateDetails[0];
+          setTemplateDetails({ ...templateDetails });
+        }
+      }
     });
-
-    var singleTemplateDetails = templateForms.filter(
-      (template) => template._id === match.params.id
-    );
-
-    if (singleTemplateDetails.length === 0) {
-      toast.error("No Template Found");
-      history.replace("/mock/template/list");
-    } else {
-      let _templateDetails = { ...templateDetails };
-      _templateDetails = singleTemplateDetails[0];
-      setTemplateDetails({ ..._templateDetails });
-    }
-  }, []);
+  },[]);
+  // }, [templateDetails, templates]);
 
   useEffect(() => {
     getInterviewerList("get-interviewer-list").then((result) => {
@@ -63,7 +69,7 @@ function TemplateAssignment({ history, match }) {
     interviewerOptions = [];
     interviewerOptions.push({ value: 0, name: "-Select Interviewer-" });
     if (interviewerList.length === 0)
-      interviewerOptions.push({value:undefined,name:"No Interviewer found!"});
+      interviewerOptions.push({ value: undefined, name: "No Interviewer found!" });
     else {
       interviewerList.forEach((interviewer) => {
         interviewerOptions.push({
@@ -73,7 +79,8 @@ function TemplateAssignment({ history, match }) {
       });
     }
     setInterviewerOptions([...interviewerOptions]);
-  }, []);
+  },[]);
+  // }, [interviewerOptions, interviewerList]);
 
 
   let onSubmit = () => {
@@ -113,7 +120,7 @@ function TemplateAssignment({ history, match }) {
               history.push("/mock/template/interviewer/list");
             }
             else if (result.status === true && result.result.modifiedCount === 0 && result.result.matchedCount === 1)
-            toast.info("No changes made!!");
+              toast.info("No changes made!!");
             history.push("/mock/template/interviewer/list");
           });
 
@@ -151,9 +158,9 @@ function TemplateAssignment({ history, match }) {
                 <button onClick={() => history.push("/mock/template/list")}>
                   Back to Template List
                 </button>
-                {interviewerList.length===0 ?
-                <button type="submit" disabled>SHARE </button>:
-                <button type="submit">SHARE </button>
+                {interviewerList.length === 0 ?
+                  <button type="submit" disabled>SHARE </button> :
+                  <button type="submit">SHARE </button>
                 }
               </div>
             </Form>

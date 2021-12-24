@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: "Lato", sans-serif;
+  font-family:  sans-serif;
 }
 
 .text-align-center{
@@ -11,7 +11,7 @@ body {
   margin: 0;
   padding: 0;
   width: 260px;
-  background-color: #f1f1f1;
+  background-image:linear-gradient(to bottom,white,rgba(0,0,255,0.2)), url("/src/assets/images/sidebar_bg.jpg");
   position: fixed;
   height: 100%;
   overflow: auto;
@@ -20,26 +20,23 @@ body {
 .sidebar a {
   display: block;
   color: black;
-  /* padding: 16px; */
   text-decoration: none;
 }
 
 .sidebar a.active span {
   background-color: #04aa6d;
-  /* background-color:blueviolet; */
   color: white;
 }
 
-.sidebar a:hover:not(.active) {
-  /* background-color: #888; */
-  background-color: rgb(192, 170, 170);
-  color: white;
+// .sidebar a:hover:not(.active) {
+.sidebar a:hover {
+  background-color: rgba(176, 131, 218,0.2);
+  color: purple;
 }
 
 div.content {
   margin-left: 280px;
   padding: 1px 16px;
-  /* height: 1000px; */
 }
 
 @media screen and (max-width: 700px) {

@@ -1,16 +1,19 @@
 /* Style the links that are used to open and close the accordion panel*/
 .accordion {
-  background-color: #eee;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 250, 0.2)));
+  background-image: linear-gradient(rgba(0, 0, 250, 0.2));
+  color: purple;
   cursor: pointer;
   width: 100%;
   text-align: left;
-  border: 1px solid gray;
+  border: 1px solid #c1a2df;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
 .accordion:hover {
-  background-color: lightskyblue;
+  background-color: rgba(141, 58, 219, 0.2);
+  color: blue;
 }
 
 .accordion span {
@@ -22,6 +25,10 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.accordion span:hover {
+  background-color: rgba(141, 58, 219, 0.4);
 }
 
 .panel {
@@ -36,19 +43,22 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: lightblue;
+  color: #5cb85c;
 }
 
 .panel > a {
-  padding: 10px 18px;
+  padding: 0.8em 1em;
   background-color: white;
+  color: #0275d8;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   overflow: hidden;
+  margin-left: 5px;
 }
 
 .panel > a:hover {
   border: 1px solid darkslategray;
+  color: #0275d8;
 }
 /*# sourceMappingURL=accordion_style.css.map */

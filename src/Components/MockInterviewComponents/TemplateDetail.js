@@ -36,7 +36,8 @@ function TemplateDetail({ history, match }) {
           }
         }
       });
-  },[initialValues,templates]);
+    },[]);
+  // },[initialValues,templates]);
 
   return (
     <div className="content">

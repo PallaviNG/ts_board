@@ -26,11 +26,10 @@ function ListStudents({ history }) {
   useEffect(() => {
     getStudentList("get-student-list").then((result) => {
       if (result === undefined) return false;
-      else {
-        dispatch(saveAllMockStudentDetailsAction(result.studentList));
-      }
+      dispatch(saveAllMockStudentDetailsAction(result.studentList));
     });
   }, []);
+  
   return (
     <div className="content">
       <div className="formComponent">
